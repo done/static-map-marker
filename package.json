@@ -1,0 +1,22 @@
+{
+	"name": "static-map-marker",
+	"version": "1.0.0",
+	"description": "Add markers on a static map image.",
+	"main": "dist/static-map-marker.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/done/static-map-marker.git"
+	},
+	"bugs": {
+		"url" : "https://github.com/done/static-map-marker/issues"
+	},
+	"author": "Daniel Domermark",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/done/static-map-marker/issues"
+	},
+	"homepage": "https://github.com/done/static-map-marker#readme"
+}
