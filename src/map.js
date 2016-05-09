@@ -1,9 +1,10 @@
 
-
-class StaticMapMarker {
+/**
+ * @class Map view
+ */
+class Map {
 
 	/**
-	 *
 	 * @constructor
 	 * @param {object} options - Options object
 	 */
@@ -29,6 +30,10 @@ class StaticMapMarker {
 
 	}
 
+	/**
+	 * Add markers to the static map image
+	 * @param {array} markers An array of marker objects
+	 */
 	addMarkers(markers) {
 		
 		// Make sure that we have the map settings calulated
