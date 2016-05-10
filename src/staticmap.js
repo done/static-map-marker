@@ -1,6 +1,29 @@
-// Export staticmap object with all sub classes
+// import Marker from './marker';
+// import Map from './map';
 
 
-export {
-	
+export class StaticMap {
+
+	/**
+	 * @constructor
+	 * @param  {[type]} options [description]
+	 * @return {[type]}         [description]
+	 */
+	constructor() {
+		this._map = null;
+	}
+
+	addMarkers(markers) {
+
+	}
+
+	// return {
+	// 	addMarkers: this.addMarkers
+
+	// }
+
 }
+
+/**
+ * Export API methods
+ */

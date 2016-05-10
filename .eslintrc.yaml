@@ -5,12 +5,13 @@
 
 parserOptions: 
     ecmaVersion: 6
-
-ecmaFeatures:
-    binaryLiterals: false           # enable binary literals
-    blockBindings: true             # enable let and const (aka block bindings)
-    defaultParams: true             # enable default function parameters
-    forOf: false                    # enable for-of loops
+    sourceType: module
+    ecmaFeatures:
+        - binaryLiterals: false           # enable binary literals
+          blockBindings: true             # enable let and const (aka block bindings)
+          defaultParams: true             # enable default function parameters
+          forOf: false                    # enable for-of loops
+          modules: true                   # enable modules
 
 env:
     browser: true       # browser global variables.

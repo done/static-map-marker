@@ -2,7 +2,7 @@
 /**
  * @class Map view
  */
-class Map {
+export class Map {
 
 	/**
 	 * @constructor
