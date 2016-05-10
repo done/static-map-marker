@@ -4,16 +4,25 @@
   "description": "Add markers on a static map image.",
   "main": "dist/static-map-marker.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --compilers js:babel-register",
     "lint": "eslint src/*.js",
     "minify": "uglifyjs --screw-ie8 dist/staticmap.js -o dist/staticmap.min.js",
     "browserify": "browserify src/staticmap.js -o dist/staticmap.js",
     "compile": "npm run lint && npm run browserify",
-    "dist": "npm run compile && npm run minify", 
+    "dist": "npm run compile && npm run minify",
     "prepublish": "npm run compile"
   },
   "browserify": {
-  	"transform": [["babelify", { "presets": ["es2015"] }]]
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "es2015"
+          ]
+        }
+      ]
+    ]
   },
   "repository": {
     "type": "git",
@@ -29,6 +38,8 @@
     "babel-preset-es2015": "^6.6.0",
     "babelify": "^7.3.0",
     "browserify": "^13.0.1",
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
     "uglify-js": "^2.6.2"
   }
 }
