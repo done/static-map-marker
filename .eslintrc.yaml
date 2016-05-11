@@ -26,7 +26,7 @@ env:
 
 
 globals:
-    # e.g. google: true
+    google: true
 
 plugins: 
 
@@ -48,7 +48,7 @@ rules:
     no-empty-character-class: 1                     # disallow empty character classes in regular expressions
     no-ex-assign: 2                                 # disallow reassigning exceptions in catch clauses
     no-extra-boolean-cast: 1                        # disallow unneccessary boolean casts
-    no-extra-parens: 1                              # disallow unneccessary parentheses
+    no-extra-parens: 0                              # disallow unneccessary parentheses
     no-extra-semi: 1                                # disallow unneccessary semicolons
     no-func-assign: 1                               # disallow reassigning function declarations
     no-inner-declarations: 1                        # disallow function or var declarations in nested blocks

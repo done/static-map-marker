@@ -2,21 +2,36 @@
 // import Map from './map';
 import {isDefined} from './utils';
 
-export class StaticMap {
+class StaticMap {
 
 	/**
 	 * @constructor
-	 * @param  {object} options The options object
 	 */
-	constructor(options) {
-
-		// Validate the passed options objectx§
-		validateOptions(options);
-
-		this._mapBounds = options.mapBounds;
+	constructor() {
 
 		this._mapSettings = null;
 		this._map = null;
+		this._mapBounds = null;
+	}
+
+	/**
+	 * Initialize
+	 * @param  {object} options The options object
+	 * @return {undefined}
+	 */
+	init(options) {
+
+		// Validate the passed options objectx§
+		this.validateOptions(options);
+
+		// TODO: Check for google 
+
+		// Creata a new LatLngBounds google object
+		this._mapBounds = new google.maps.LatLngBounds(
+			new google.maps.LatLng(options.mapBounds.sw.lat, options.mapBounds.sw.lng),
+			new google.maps.LatLng(options.mapBounds.ne.lat, options.mapBounds.ne.lng)
+		);
+
 	}
 
 	addMarkers(markers) {
@@ -27,24 +42,29 @@ export class StaticMap {
 		}
 
 	}
-
+	
+	/**
+	 * Validate the passed options object
+	 * @param  {object} options The options object
+	 * @throws {Error} If options not defined or does not have mandatory properties
+	 * @return {undefined}
+	 */
 	validateOptions(options) {
 
-		const errors = [];
-
-		if ( !isDefined(options) )
-			errors[errors.length] = 'You must provide an options object.';
+		if ( !isDefined(options) ) {
+			throw new Error('You must provide an options object.');
+		}
 
 		if ( !isDefined(options.mapBounds) || 
-				!isDefined(options.mapBounds.lat) ||
-				!isDefined(options.mapBounds.lng) )
-			errors[errors.length] = 'You must provide a valid mapBounds parameter in the options object.';
-
+			!isDefined(options.mapBounds.sw) ||
+			!isDefined(options.mapBounds.sw.lat) ||
+			!isDefined(options.mapBounds.sw.lng) ||
+			!isDefined(options.mapBounds.ne) ||
+			!isDefined(options.mapBounds.ne.lat) ||
+			!isDefined(options.mapBounds.ne.lng) ) {
+				throw new Error('You must provide a valid mapBounds object in the options object {sw: {lat: xxx, lng: xxx}, ne: {lat: xxx, lng: xxx}}.');
+		}
 	}
-
-	// isDefined(val) {
-	// 	return (val !== null || typeof val !== 'undefined');
-	// }
 
 	/**
 	 * Initialize map settings based on the passed map options
@@ -52,13 +72,26 @@ export class StaticMap {
 	 */
 	initializeMap() {
 		
-		let settings = {
+		const settings = {
 			scale : Math.pow(2, this._mapZoom),
 			topRight:  this.fromLatLngToPoint(this._mapBounds.getNorthEast()),
 			bottomLeft: this.fromLatLngToPoint(this._mapBounds.getSouthWest())
 		};
 
 		return settings;
+	}
+
+	/**
+	 * Converts a gogole.maps.LatLng to a google.maps.Point object
+	 * @param  {google.maps.LatLng} latlng Longitude and latitude positions
+	 * @return {google.maps.Point}	A point object with x and y positions
+	 */
+	fromLatLngToPoint(latlng) {
+
+		const tileSize = 256,
+			  x = (latlng.lng() + 180) / 360 * tileSize,
+			  y = ((1 - Math.log(Math.tan(latlng.lat() * Math.PI / 180) + 1 / Math.cos(latlng.lat() * Math.PI / 180)) / Math.PI) / 2 * Math.pow(2, 0)) * tileSize;
+		return new google.maps.Point(x, y);
 	}
 
 	// return {
@@ -68,6 +101,8 @@ export class StaticMap {
 
 }
 
-/**
- * Export API methods
- */
+// Export
+if ( module !== null && typeof module !== 'undefined' && 
+	module.exports !== null && typeof module.exports !== 'undefined' ) {
+	module.exports = StaticMap;
+}
