@@ -25,15 +25,21 @@ class StaticMap {
 		this.validateOptions(options);
 
 		// TODO: Check for google 
+		if ( !isDefined(window.google) || !isDefined(window.google.maps) ) {
+			throw new Error('Google Maps API is not available.');
+		}
 
 		// Creata a new LatLngBounds google object
 		this._mapBounds = new google.maps.LatLngBounds(
 			new google.maps.LatLng(options.mapBounds.sw.lat, options.mapBounds.sw.lng),
 			new google.maps.LatLng(options.mapBounds.ne.lat, options.mapBounds.ne.lng)
 		);
-
 	}
 
+	/**
+	 * Add markers to the static map image
+	 * @param {array} markers An array of marker objects
+	 */
 	addMarkers(markers) {
 
 		// Make sure that we have the map initialized

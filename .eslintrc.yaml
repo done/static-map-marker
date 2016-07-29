@@ -11,7 +11,6 @@ parserOptions:
           blockBindings: true             # enable let and const (aka block bindings)
           defaultParams: true             # enable default function parameters
           forOf: false                    # enable for-of loops
-          modules: true                   # enable modules
 
 env:
     browser: true       # browser global variables.

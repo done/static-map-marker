@@ -10,11 +10,6 @@ describe('StaticMap', () => {
 
 	describe('#validateOptions()', () => {
 
-		// beforeEach(() => {
-		// 	// Create a new Rectangle object before every test.
-		// 	rectangle = new Rectangle(10, 20);
-		// });
-
 		it('null should throw error', () => {
 			let staticMap = new StaticMap(),
 				options = null;
